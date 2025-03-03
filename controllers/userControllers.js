@@ -101,7 +101,16 @@ const loginUser = async (req, res, next) => {
 //PROTECTED 
 
 const getUser = async (req, res, next) => {
-    res.json(" User Profile")
+    const {id} = req.params;
+    try {
+        const user = await User.findById(id).select('-password');
+        if(!user) {
+            return next(new HttpError("User not found.", 404))
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        return next(new HttpError(error))
+    }
 }
 
 

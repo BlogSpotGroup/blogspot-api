@@ -17,8 +17,8 @@ app.use(cors({credentials :true, origin: "http://localhost:3000"}))
 app.use('/api/users', userRoutes)
 app.use('/api/posts', postRoutes)
 
-//app.use(notFound)
-//app.use(errorHandler)
+app.use(notFound)
+app.use(errorHandler)
 
 
 
